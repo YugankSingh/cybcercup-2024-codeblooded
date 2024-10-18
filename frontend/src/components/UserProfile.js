@@ -2,9 +2,8 @@ import React from "react"
 import { Link } from "react-router-dom"
 import "../scss/Navbar.scss"
 import { useSelector } from "react-redux"
-import {getTruncatedName} from "../utils"
+import { getTruncatedName } from "../utils"
 // helper function
-
 
 function UserProfile(props) {
 	const auth = useSelector(state => state.auth)
@@ -21,7 +20,7 @@ function UserProfile(props) {
 			) : (
 				<>
 					<div className="nav-login-button">
-						<Link href="/login">Enter</Link>
+						<Link to="/login">Enter</Link>
 					</div>
 				</>
 			)}
