@@ -13,6 +13,7 @@ import Footer from "./Footer"
 import ResetPassword from "./ResetPassword"
 import Modal from "./Modal"
 import ResponsiveRemovalHOC from "./ResponsiveRemovalHOC"
+import UserProfile from "./UserProfile"
 
 export {
 	AppWrapper,
@@ -30,4 +31,5 @@ export {
 	ResetPassword,
 	Modal,
 	ResponsiveRemovalHOC,
+	UserProfile,
 }

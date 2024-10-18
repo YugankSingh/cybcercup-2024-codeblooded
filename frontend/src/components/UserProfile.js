@@ -20,9 +20,8 @@ function UserProfile(props) {
 				</div>
 			) : (
 				<>
-					{/* Yup these are anchors and not Link as I have to reload the page inorder to get different res.headers so that Google Sign In can work */}
 					<div className="nav-login-button">
-						<a href="/login">Enter</a>
+						<Link href="/login">Enter</Link>
 					</div>
 				</>
 			)}
