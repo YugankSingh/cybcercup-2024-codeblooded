@@ -9,13 +9,8 @@ class Home extends Component {
 		const { posts, godsList, auth } = this.props
 		return (
 			<div className="home">
-				<PostsList posts={posts} />
 				{auth.isLoggedIn && (
-					<ResponsiveRemovalHOC
-						child={GodsList}
-						childProps={{ gods: godsList }}
-						removalWidth={600}
-					/>
+					<></>
 					// <GodsList gods={godsList} />
 				)}
 			</div>

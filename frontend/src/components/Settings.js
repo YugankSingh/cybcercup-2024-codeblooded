@@ -10,7 +10,7 @@ class Settings extends Component {
 		super(props)
 		const { user } = this.props.auth
 		this.state = {
-			isEditModeOn: false, 
+			isEditModeOn: false,
 			password: "",
 			confirmPassword: "",
 			name: user.name,
@@ -32,14 +32,6 @@ class Settings extends Component {
 			lastEditRequest: Date.now(),
 		})
 	}
-	handleProfilePhoto = e => {
-		var file = e.target.files[0]
-		var url = window.URL.createObjectURL(file)
-		this.setState({
-			profilePhoto: file,
-			profilePhotoUrl: url,
-		})
-	}
 	handleFormSubmit = e => {
 		e.preventDefault()
 		if (this.state.lastEditRequest + 1000 > Date.now()) return
@@ -48,7 +40,9 @@ class Settings extends Component {
 		if (password && !confirmPassword) return
 
 		this.setState({ lastEditRequest: Date.now() })
-		this.props.dispatch(editUser(name, password, confirmPassword, profilePhoto, emoji))
+		this.props.dispatch(
+			editUser(name, password, confirmPassword, profilePhoto, emoji)
+		)
 	}
 	endEditMode = () => {
 		const { user } = this.props.auth
@@ -68,18 +62,6 @@ class Settings extends Component {
 		return (
 			<div className="profile-wrapper">
 				<div className="profile">
-					{this.state.profilePhotoUrl || user.avatar ? (
-						<div className="img-container">
-							<img
-								src={this.state.profilePhotoUrl || UserPhotoURL(user.avatar)}
-								alt="user-dp"
-								id="user-dp"
-								crossOrigin="true"
-							/>
-						</div>
-					) : (
-						<></>
-					)}
 					{!inProgress && error && (
 						<div className="alert error-dailog">{error}</div>
 					)}
@@ -94,45 +76,12 @@ class Settings extends Component {
 					</div>
 					<div className="field">
 						<div className="field-label">Name</div>
-						{isEditModeOn ? (
-							<input
-								type="text"
-								onChange={e => this.handleInputChange("name", e.target.value)}
-								value={this.state.name}
-							/>
-						) : (
-							<div className="field-value">{user.name}</div>
-						)}
+
+						<div className="field-value">{user.name}</div>
 					</div>
 
-					<div className="field">
-						<div className="field-label">
-							Emoji:
-							<h1 style={{ display: "inline-block" }}>
-								{isEditModeOn ? this.state.emoji || user.emoji : user.emoji}
-							</h1>
-						</div>
-						{isEditModeOn && (
-							<EmojiPicker
-								onEmojiClick={obj => {
-									this.setState({ emoji: obj.emoji })
-								}}
-								searchPlaceholder="Love me like you do"
-							/>
-						)}
-					</div>
 					{isEditModeOn && (
 						<>
-							<div className="field">
-								<div className="field-label">Profile Photo</div>
-								<input
-									type="file"
-									name="profile-photo"
-									accept="image/*"
-									onChange={e => this.handleProfilePhoto(e)}
-								/>
-							</div>
-
 							<div className="field">
 								<div className="field-label">New Password</div>
 								<input
@@ -173,7 +122,7 @@ class Settings extends Component {
 								className="edit edit-btn"
 								onClick={e => this.handleInputChange("isEditModeOn", true)}
 							>
-								Edit Profile
+								Change Password
 							</button>
 						)}
 					</div>

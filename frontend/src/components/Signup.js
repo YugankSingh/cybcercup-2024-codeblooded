@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { signup } from "../actions/auth"
-import { GoogleLogin } from "./"
 import { toast } from "react-hot-toast"
 import { APIUrls, apiLoader } from "../utils"
 
@@ -157,7 +156,6 @@ class Signup extends Component {
 							</div>
 						</>
 					)}
-					<GoogleLogin text={"Google Register"} />
 				</form>
 			</div>
 		)

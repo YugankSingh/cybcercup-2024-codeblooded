@@ -45,15 +45,12 @@ function App(props) {
 						/>
 						<Route path="/search" component={LazySearchPage} />
 						<Route path="/godslist" component={LazyGodsListPage} />
-						<Route path="/chat" component={LazyChatPage} />
 						<Route path="" component={Page404} />
 					</Switch>
 				</Suspense>
 				<ActionsMenu />
-				<ResponsiveRemovalHOC child={Chat} removalWidth={600} />
 			</div>
 			<Switch>
-				<Route path="/chat" />
 				<Route path="/godslist" />
 				<Route path="" component={Footer} />
 			</Switch>

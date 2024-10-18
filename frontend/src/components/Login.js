@@ -34,6 +34,10 @@ class Login extends Component {
 	}
 	handleForgotPassword = e => {
 		e.preventDefault()
+
+		toast.error(`Please contact the admin!`)
+		return;
+
 		if (this.state.lastForgotPassword + 2000 > Date.now()) return
 
 		const { email } = this.state
@@ -88,7 +92,7 @@ class Login extends Component {
 
 		return (
 			<div className="login">
-				<h1 style={{textAlign: "center"}}>Log In</h1>
+				<h1 style={{ textAlign: "center" }}>Log In</h1>
 				<form action="" className="login-form">
 					<span className="login-signup-header">
 						{error && <div className="alert error-dialog">{error}</div>}
@@ -127,7 +131,6 @@ class Login extends Component {
 							</button>
 						)}
 					</div>
-					<GoogleLogin />
 				</form>
 			</div>
 		)

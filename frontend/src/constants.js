@@ -5,12 +5,12 @@ export const CDN_URL =
 
 export const CHAT_SOCKET_URL =
 	process.env.NODE_ENV === "development"
-		? `http://10.104.20.215:8000/`
+		? `http://localhost:8000`
 		: `https://api.hoomanns.yugank.dev`
 
 export const SERVER_URL =
 	process.env.NODE_ENV === "development"
-		? `http://10.104.20.215:8000/`
+		? `http://localhost:8000`
 		: `https://api.hoomanns.yugank.dev`
 
 export const getCdnUrl = key => `${CDN_URL}${key}`
