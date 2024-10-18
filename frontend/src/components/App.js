@@ -12,6 +12,7 @@ import {
 	ResponsiveRemovalHOC,
 	ActionsMenu,
 } from "."
+import Traffic from "./Traffic"
 
 const LazyHome = React.lazy(() => import("./Home"))
 const LazySettings = React.lazy(() => import("./Settings"))
@@ -50,6 +51,7 @@ function App(props) {
 					</Switch>
 				</Suspense>
 				<ActionsMenu />
+				<Traffic />
 				<ResponsiveRemovalHOC child={Chat} removalWidth={600} />
 			</div>
 			<Switch>

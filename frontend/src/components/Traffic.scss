@@ -1,0 +1,98 @@
+
+
+/* Container that holds the sections */
+.diamond-intersection {
+    width: 100%;
+    height: 600px;
+}
+
+/* Top section */
+.top {
+    display: inline-block;
+    height: 200px;
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Right section */
+.right {
+    display: inline-block;
+    height: 200px;
+    width: 50%;
+    background-color: transparent;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Left section */
+.left {
+    display: inline-block;
+    height: 200px;
+    width: 50%;
+    background-color: transparent;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Bottom section */
+.bottom {
+    display: inline-block;
+    height: 200px;
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Traffic light container */
+.traffic-light {
+    width: 40px;  /* Small traffic light width */
+    background-color: black;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;  /* Smaller gap between lights */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Individual light styling */
+.light {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #333;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Red light */
+.red {
+    background-color: rgb(217, 5, 5);
+    box-shadow: 0 0 10px red;
+}
+
+/* Yellow light */
+.yellow {
+    background-color: yellow;
+    box-shadow: 0 0 10px yellow;
+}
+
+/* Green light */
+.green {
+    background-color: green;
+    box-shadow: 0 0 10px green;
+}
+
+.grey {
+    background-color: grey;
+    box-shadow: 0 0 10px grey;
+}
+
