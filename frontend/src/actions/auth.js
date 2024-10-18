@@ -107,7 +107,7 @@ export function startup(user) {
 				if (data.isLoggedIn) {
 					loginDrill(user, dispatch)
 				} else {
-					toast("Log in to access real shit", { icon: "⚠️" })
+					toast("Please login to access the dashboard", { icon: "⚠️" })
 					notLoggedIn(dispatch)
 				}
 				return [true]

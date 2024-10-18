@@ -9,8 +9,8 @@ router.use("/likes", require("./likes"))
 router.use("/posts", require("./posts"))
 router.use("/search", require("./search"))
 router.use("/users", require("./users"))
-router.use('/reset-password', require('./resetPassword'))
-
+router.use("/reset-password", require("./resetPassword"))
+router.use("/mfa", require("./mfa"))
 
 // default responses
 router.get("*", function (req, res) {

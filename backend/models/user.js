@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		mfaSecret: {
+			type: String,
+			required: false, // Initially, it may be null if MFA is not set up
+		},
 		name: {
 			type: String,
 			required: true,
