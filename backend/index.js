@@ -14,6 +14,7 @@ const cors = require("cors")
 
 //used for session cookies
 const session = require("express-session")
+const { checkAuthentication } = require("./config/jwt-authentication")
 
 const MongoStore = require("connect-mongo")(session)
 
@@ -53,6 +54,50 @@ app.use((err, req, res, next) => {
 	return res.status(500).json({
 		message: "Internal Server Error",
 	})
+})
+
+app.post("/mfa/setup", checkAuthentication(), (req, res) => {
+	const { username } = req.body
+
+	// Generate a secret for the user
+	const secret = speakeasy.generateSecret({
+		name: `Traffic Manager (${username})`,
+	})
+
+	// Store the secret key against the user (in a real app, save it in the database)
+	users[username] = { secret: secret.base32 }
+
+	// Generate a QR code for the secret
+	qrcode.toDataURL(secret.otpauth_url, (err, dataURL) => {
+		if (err) {
+			return res.status(500).json({ error: "Failed to generate QR code" })
+		}
+
+		res.json({ qrCode: dataURL, secret: secret.base32 })
+	})
+})
+
+// Route to verify the user's OTP
+app.post("/mfa/verify", checkAuthentication(), (req, res) => {
+	const { username, token } = req.body
+
+	const user = users[username]
+	if (!user) {
+		return res.status(404).json({ error: "User not found" })
+	}
+
+	// Verify the token with the user's secret
+	const isValid = speakeasy.totp.verify({
+		secret: user.secret,
+		encoding: "base32",
+		token: token,
+	})
+
+	if (isValid) {
+		res.json({ verified: true })
+	} else {
+		res.status(400).json({ error: "Invalid token" })
+	}
 })
 
 const Server = http.createServer(app)

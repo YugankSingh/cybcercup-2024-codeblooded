@@ -9,6 +9,10 @@ class Home extends Component {
 		const { posts, godsList, auth } = this.props
 		return (
 			<div className="home">
+				{auth.isLoggedIn && (
+					<></>
+					// <GodsList gods={godsList} />
+				)}
 			</div>
 		)
 	}

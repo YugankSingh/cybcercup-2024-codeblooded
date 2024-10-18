@@ -34,7 +34,7 @@ router.post(
 )
 
 // log-out
-router.post("/logout", usersApi.destroySession)
+router.post("/logout", checkAuthentication(), usersApi.destroySession)
 
 // load the user data when user opens the app
 router.get(

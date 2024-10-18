@@ -14,6 +14,7 @@ function PostsList() {
 			dispatch(fetchMorePosts(posts))
 		}
 	}
+	return <></>
 	return (
 		<div className="posts-list">
 			<CreatePost />

@@ -2,7 +2,11 @@ const User = require("../models/user")
 const SignUpOTP = require("../models/signupOTP")
 const s3Delete = require("../config/multer-s3").delete
 const returnPostsBefore = require("./posts_api").returnPostsBefore
-const { login, deleteRefreshToken } = require("../config/jwt-authentication")
+const {
+	login,
+	deleteRefreshToken,
+	deleteUserSession,
+} = require("../config/jwt-authentication")
 const { OAuth2Client } = require("google-auth-library")
 const env = require("../config/environment")
 const client = new OAuth2Client(env.google_client_id)
@@ -77,16 +81,10 @@ module.exports.googleLogin = async (req, res, next) => {
 module.exports.destroySession = async (req, res, next) => {
 	try {
 		// todo take care of refreshToken
-		await deleteRefreshToken(req, res)
+		console.log(req.Date)
+		await deleteUserSession(req, res)
 
-		res.clearCookie("accessToken", {
-			httpOnly: true,
-			sameSite: "none",
-			signed: true,
-			// turn this on for it to work in browser
-			secure: true,
-		})
-		res.clearCookie("refreshToken", {
+		res.clearCookie("sessionKey", {
 			httpOnly: true,
 			sameSite: "none",
 			signed: true,

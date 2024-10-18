@@ -1,11 +1,4 @@
-TODO:
+TODO: 
 
-test the apis manually
-clean up the code wherever needed
-
-#Later
-show all posts of the user on the profile page
-add a page made only for a single post
-add sharing posts 
-add a notifications something using library
-work with sending mails for comments and likes.
+Integrate MFA
+Integrate MAC address and IP address for user login

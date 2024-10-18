@@ -2,8 +2,6 @@
 	background: #c7e7c8;
 	height: 80px;
 
-	border-bottom: solid 24px;
-	border-image: url("../../public/border.png") 24 repeat;
 	padding: 10px 200px 10px 100px;
 	display: flex;
 	align-items: center;
@@ -73,6 +71,11 @@
 		flex-direction: row;
 		flex-basis: bottom;
 		align-items: flex-end;
+		font-size: 20px;
+		a {
+			color: black;
+			text-decoration: none;
+		}
 		> * {
 			display: flex;
 			align-items: flex-end;

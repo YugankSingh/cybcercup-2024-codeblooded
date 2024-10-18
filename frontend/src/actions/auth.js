@@ -113,9 +113,9 @@ export function startup(user) {
 				return [true]
 			},
 			{
-				loading: "Loading your favourite shit...",
+				loading: "Loading your details...",
 				success: false,
-				error: "Oops, Error in loading your favourite shit!",
+				error: "Oops, Error in loading your details!",
 			}
 		)
 	}

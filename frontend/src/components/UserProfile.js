@@ -13,9 +13,6 @@ function UserProfile(props) {
 			{auth.isLoggedIn ? (
 				<div className="user-container">
 					<Link to="/settings" className="user-link">
-						<div className={"emoji-avatar"}>
-							<p>{auth.user.emoji}</p>
-						</div>
 						<span className="user-profile-name">
 							{getTruncatedName(auth.user.name, 15)}
 						</span>
