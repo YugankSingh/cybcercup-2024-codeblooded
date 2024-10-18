@@ -2,16 +2,13 @@ const express = require("express")
 
 const router = express.Router()
 const usersApi = require("../api/users_api")
-const {
-	checkAuthentication,
-	authenticate,
-} = require("../config/jwt-authentication")
+const { checkAuthentication, authenticate } = require("../util/session")
 const {
 	uploadProfilePhotoS3,
 	uploadMemoryProfilePhoto,
-} = require("../config/multer-s3")
+} = require("../util/multer-s3")
 
-const validator = require("../config/validator-mw")
+const validator = require("../util/validator-mw")
 const { body, param } = require("express-validator")
 
 // todo: validate that if the user is not logged in then only do it.

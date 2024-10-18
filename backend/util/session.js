@@ -104,7 +104,6 @@ const login = async (res, userID) => {
 		console.log(newSessionKey)
 		res.cookie("sessionKey", newSessionKey, {
 			httpOnly: true,
-			// sameSite: "lax",
 			path: "/",
 			maxAge: new Date().getTime() + 500000000,
 			sameSite: "strict",

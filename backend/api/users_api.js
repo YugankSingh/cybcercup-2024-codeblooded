@@ -1,14 +1,13 @@
 const User = require("../models/user")
 const SignUpOTP = require("../models/signupOTP")
-const s3Delete = require("../config/multer-s3").delete
-const returnPostsBefore = require("./posts_api").returnPostsBefore
+const s3Delete = require("../util/multer-s3").delete
 const {
 	login,
 	deleteRefreshToken,
 	deleteUserSession,
-} = require("../config/jwt-authentication")
+} = require("../util/session")
 const { OAuth2Client } = require("google-auth-library")
-const env = require("../config/environment")
+const env = require("../util/environment")
 const client = new OAuth2Client(env.google_client_id)
 const crypto = require("crypto")
 const SignupOTPMailer = require("../mailers/signup_otp_mailer")
@@ -102,15 +101,11 @@ module.exports.destroySession = async (req, res, next) => {
 
 module.exports.startSession = async (req, res, next) => {
 	try {
-		let posts = await returnPostsBefore(new Date())
 		if (!req.isAuthenticated) {
 			return res.status(200).json({
 				message: "You are not logged in",
 				isLoggedIn: false,
 				success: true,
-				data: {
-					posts: posts,
-				},
 			})
 		}
 		let user = await User.findById(req.user.id)
@@ -121,9 +116,6 @@ module.exports.startSession = async (req, res, next) => {
 				message: "Error in logging in",
 				isLoggedIn: false,
 				success: true,
-				data: {
-					posts: posts,
-				},
 			})
 		}
 		let userObject = userMongoToUserObject(user)
@@ -133,7 +125,6 @@ module.exports.startSession = async (req, res, next) => {
 			success: true,
 			data: {
 				user: userObject,
-				posts: posts,
 			},
 		})
 	} catch (error) {

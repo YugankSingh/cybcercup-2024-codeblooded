@@ -1,5 +1,5 @@
-const { transporter, renderTemplate } = require("../config/nodemailer")
-const env = require("../config/environment")
+const { transporter, renderTemplate } = require("../util/nodemailer")
+const env = require("../util/environment")
 
 module.exports = otp => {
 	let renderedHTML = renderTemplate({ otp }, "signupOTP.ejs")

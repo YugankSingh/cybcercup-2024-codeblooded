@@ -1,5 +1,5 @@
-const { transporter, renderTemplate } = require("../config/nodemailer")
-const env = require("../config/environment")
+const { transporter, renderTemplate } = require("../util/nodemailer")
+const env = require("../util/environment")
 
 module.exports = token => {
 	let renderedHTML = renderTemplate(

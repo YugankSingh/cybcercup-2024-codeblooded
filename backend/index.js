@@ -1,11 +1,11 @@
 if (process.env.NODE_ENV !== "production") require("dotenv").config()
 const express = require("express")
 const app = express()
-const env = require("./config/environment")
+const env = require("./util/environment")
 // require('./config/view-helper')(app)
 const port = env.app_port
 const logger = require("morgan")
-const db = require("./config/mongoose")
+const db = require("./util/mongoose")
 const cookieParser = require("cookie-parser")
 const path = require("path")
 const fs = require("fs")
@@ -56,7 +56,6 @@ app.use((err, req, res, next) => {
 })
 
 const Server = http.createServer(app)
-const chatSockets = require("./config/chat_sockets").chatSockets(Server)
 
 Server.listen(env.app_port, err => {
 	if (err) {
