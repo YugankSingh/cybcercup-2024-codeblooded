@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-import { Search, ResponsiveRemovalHOC, UserProfile } from "./"
+import {  ResponsiveRemovalHOC, UserProfile } from "./"
 import "../scss/Navbar.scss"
 
 class Navbar extends Component {

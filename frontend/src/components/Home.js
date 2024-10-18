@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
 
-import { PostsList, GodsList, ResponsiveRemovalHOC } from "."
+import Traffic from "./Traffic"
 
 class Home extends Component {
 	render() {
@@ -10,8 +10,9 @@ class Home extends Component {
 		return (
 			<div className="home">
 				{auth.isLoggedIn && (
-					<></>
-					// <GodsList gods={godsList} />
+					<>
+						<Traffic />
+					</>
 				)}
 			</div>
 		)

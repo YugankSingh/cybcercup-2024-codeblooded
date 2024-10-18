@@ -16,10 +16,6 @@ import Traffic from "./Traffic"
 
 const LazyHome = React.lazy(() => import("./Home"))
 const LazySettings = React.lazy(() => import("./Settings"))
-const LazyProfile = React.lazy(() => import("./Profile"))
-const LazySearchPage = React.lazy(() => import("./SearchPage"))
-const LazyGodsListPage = React.lazy(() => import("./GodsListPage"))
-const LazyChatPage = React.lazy(() => import("./ChatPage"))
 
 function App(props) {
 	return (
@@ -38,20 +34,9 @@ function App(props) {
 							component={LazySettings}
 							isLoggedin={props.auth.isLoggedIn}
 						/>
-						<PrivateRoute
-							path="/users/:id"
-							component={LazyProfile}
-							isLoggedin={props.auth.isLoggedIn}
-							userFriends={props.auth.userFriends}
-						/>
-						<Route path="/search" component={LazySearchPage} />
-						<Route path="/godslist" component={LazyGodsListPage} />
 						<Route path="" component={Page404} />
 					</Switch>
 				</Suspense>
-				<ActionsMenu />
-				<Traffic />
-				<ResponsiveRemovalHOC child={Chat} removalWidth={600} />
 			</div>
 			<Switch>
 				<Route path="/godslist" />

@@ -1,8 +1,6 @@
 import { EDIT_USER_SUCCESS, LOGIN_SUCCESS, LOGOUT } from "./actionTypes"
 import { APIUrls } from "../utils/"
 import { getFormBody } from "../utils"
-import { addGodsList, removeGodsList } from "./gods"
-import { updatePosts } from "./posts"
 import toast from "react-hot-toast"
 import apiLoader from "../utils/apiLoader"
 
@@ -16,7 +14,6 @@ export function loginSuccess(user) {
 function loginDrill(user, dispatch) {
 	toast.success(`Hello ${user.name}`, { icon: "👋" })
 	dispatch(loginSuccess(user))
-	dispatch(addGodsList(user.gods))
 }
 function notLoggedIn(dispatch) {
 	dispatch({
@@ -102,8 +99,7 @@ export function startup(user) {
 				if (!data.success) {
 					return [false, data.message]
 				}
-				let { user, posts } = data.data
-				dispatch(updatePosts(posts))
+				let { user } = data.data
 				if (data.isLoggedIn) {
 					loginDrill(user, dispatch)
 				} else {
@@ -136,7 +132,6 @@ export function logoutUser() {
 				dispatch({
 					type: LOGOUT,
 				})
-				dispatch(removeGodsList())
 				toast.success("Logged out successfully,\nSee Ya!", { icon: "👋" })
 				return [true]
 			},
