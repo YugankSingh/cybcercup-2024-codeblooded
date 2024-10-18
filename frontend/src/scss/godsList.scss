@@ -1,0 +1,122 @@
+.gods-list-page {
+	.gods-list-wrapper {
+		box-sizing: border-box;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		.gods-list {
+			box-sizing: border-box;
+			display: inline-block;
+			width: 400px;
+			max-width: 100%;
+			height: calc(100vh - 230px);
+		}
+	}
+	.gods-list-button {
+		display: none !important;
+	}
+}
+.gods-list-wrapper {
+	margin-left: 50px;
+	@media screen and (max-width: 1000px) {
+		margin-left: 20px;
+	}
+	@media screen and (max-width: 700px) {
+		margin-left: 0;
+		margin-right: -10px;
+	}
+
+	.gods-list-button {
+		display: none;
+	}
+
+	.gods-list {
+		background-color: #fff8fc;
+		scrollbar-color: #ffd0e2 #fff;
+		// scrollbar-color: #fff1fa rgb(10, 0, 0);
+		flex-grow: 0.2;
+		height: 50vh;
+		max-height: 600px;
+		box-sizing: border-box;
+		margin-top: 20px;
+		border: 1px solid #e0e0e0;
+		border-radius: 4px;
+		overflow-y: scroll;
+		width: 250px;
+
+		.gods-item {
+			border-bottom: 1px solid #ffc8c8;
+		}
+		.gods-img {
+			font-size: 30px;
+			line-height: 35px;
+			width: 40px;
+			display: flex;
+			justify-content: center;;
+			img {
+				height: 40px;
+				width: 40px;
+				display: flex;
+				align-items: center;
+			}
+			.emoji-avatar span {
+				height: 40px;
+				display: flex;
+				align-items: center;
+			}
+		}
+	}
+
+	@media screen and (max-width: 900px) {
+		.gods-list {
+			display: none;
+		}
+		.gods-list-button {
+			display: flex;
+		}
+		padding: 6px;
+	}
+	@media screen and (max-width: 600px) {
+		.gods-list-button {
+			display: none;
+		}
+	}
+
+	.gods-list .header {
+		border-bottom: 1px solid #e0e0e0;
+		font-weight: 600;
+		font-size: 16px;
+		color: #424242;
+		padding: 15px 20px;
+		position: sticky;
+		top: 0;
+		background-color: #fffdfe;
+	}
+	.gods-list .gods-img img {
+		height: 40px;
+	}
+	.no-gods {
+		display: flex;
+		justify-content: center;
+		margin: 20px 0;
+	}
+	.gods-item {
+		display: flex;
+		align-items: center;
+		padding: 10px;
+		padding-top: 15px;
+		color: #616161;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 22px;
+		text-decoration: none;
+	}
+	.gods-item:hover {
+		cursor: pointer;
+		background-color: #ffeaea;
+	}
+	.gods-name {
+		padding: 0 10px;
+	}
+}

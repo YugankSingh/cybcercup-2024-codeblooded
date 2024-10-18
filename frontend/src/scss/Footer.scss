@@ -1,0 +1,16 @@
+#main-app {
+	min-height: calc(100vh - 250px);
+	@media screen and (max-width: 600px) {
+		min-height: calc(100vh - 350px);
+	}
+}
+.footer {
+	// height: 120px;
+	background-color: #7488dc;
+	color: white;
+	padding: 20px;
+
+	@media screen and (max-width: 600px) {
+		padding-bottom: 110px;
+	}
+}

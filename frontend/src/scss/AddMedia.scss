@@ -1,0 +1,38 @@
+.add-media-wrapper {
+	.add-media {
+		margin: 30px 0;
+		#media-input {
+			display: none;
+		}
+		#media-input-label {
+			border: 1px solid #999;
+			padding: 20px 35px;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+	.media-preview {
+		.media-preview-item{
+			display: inline-block;
+		}
+		img, video {
+			margin: 3px;
+			padding: 1px;
+			border: 1px dashed rgb(106, 106, 106);
+		}
+		.ready{
+			border: 1px solid #999;
+			border-color: rgb(12, 255, 255);
+		}
+	}
+
+	.loader {
+		h2{
+			margin-bottom: 2px;
+		}
+		h3{
+			margin-top: 2px;
+		}
+	}
+}

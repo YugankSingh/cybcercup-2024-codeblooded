@@ -1,0 +1,27 @@
+#actions-menu {
+	@media screen and (min-width: 601px) {
+		display: none;
+	}
+	height: 100px;
+	position: fixed;
+	bottom: 0;
+	background-color: #f5f5f8;
+	border-top: #d5d4ff solid 2px;
+	width: 100%;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	// padding-left: calc(100% - 400px);
+	// padding-right: calc(100% - 400px);
+	justify-content: center;
+	align-items: center;
+	padding: 5px;
+
+	@media screen and (max-width: 380px) {
+		height: 90px;
+		a {
+			width: 50px;
+			height: 50px;
+		}
+	}
+}
