@@ -16,6 +16,7 @@ class Signup extends Component {
 			lastRequest: 0,
 			isOTPRequested: false,
 			inProgress: false,
+			mfaQr: "",
 		}
 	}
 
@@ -76,7 +77,11 @@ class Signup extends Component {
 					this.setState({ inProgress: false })
 					return [false, data.message]
 				}
-				this.setState({ isOTPRequested: true, inProgress: false })
+
+				const mfaQr = data?.data?.qrCode
+				if (!mfaQr) return [false, data.message]
+
+				this.setState({ isOTPRequested: true, inProgress: false, mfaQr: mfaQr })
 				return [true, data.message]
 			},
 			{
@@ -133,7 +138,7 @@ class Signup extends Component {
 					{!this.state.isOTPRequested && (
 						<div className="field">
 							<button onClick={this.requestOTP} type="submit">
-								Request OTP
+								Setup MFA
 							</button>
 						</div>
 					)}
@@ -149,6 +154,16 @@ class Signup extends Component {
 									onChange={e => this.handleInputChange("OTP", e.target.value)}
 								/>
 							</div>
+							<div className="field">
+								{this.state.mfaQr ? (
+									<>
+										<img src={this.state.mfaQr} alt="MFA QR Code" />
+									</>
+								) : (
+									<>Loading MFA QR... </>
+								)}
+							</div>
+
 							<div className="field">
 								<button onClick={this.handleFormSubmit} type="submit">
 									Sign Up

@@ -21,7 +21,7 @@ function notLoggedIn(dispatch) {
 	})
 }
 
-export function login(email, password) {
+export function login(email, password, totp) {
 	return async function (dispatch) {
 		apiLoader(
 			async () => {
@@ -32,7 +32,7 @@ export function login(email, password) {
 						"Content-Type": "application/x-www-form-urlencoded",
 					},
 					credentials: "include",
-					body: getFormBody({ email, password }),
+					body: getFormBody({ email, password, totp }),
 				})
 				let data = await res.json()
 				if (data.success) {
@@ -99,7 +99,8 @@ export function startup(user) {
 				if (!data.success) {
 					return [false, data.message]
 				}
-				let { user } = data.data
+				let user = data?.data?.user
+				if (!user) return [false, data.message]
 				if (data.isLoggedIn) {
 					loginDrill(user, dispatch)
 				} else {

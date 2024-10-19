@@ -1,22 +1,21 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
-const signupOTPSchema = new Schema(
+const mfaDetailsSchema = new Schema(
 	{
 		email: {
 			type: String,
 			required: true,
+			unique: true,
 		},
-		otp: {
+		mfaSecret: {
 			type: String,
 			required: true,
-			maxLength: 6,
-			minLength: 6,
 		},
 	},
 	{ timestamps: true }
 )
 
-const SignupOTPSchema = mongoose.model("SignupOTPSchema", signupOTPSchema)
+const MFADetailSchema = mongoose.model("MFADetailSchema", mfaDetailsSchema)
 
-module.exports = SignupOTPSchema
+module.exports = MFADetailSchema

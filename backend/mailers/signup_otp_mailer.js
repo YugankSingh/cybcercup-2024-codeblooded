@@ -10,6 +10,7 @@ module.exports = otp => {
 			subject: "OTP is here, here is your Sign Up OTP",
 			html: renderedHTML,
 		},
+
 		(err, info) => {
 			if (err) {
 				console.error("error in sending mail", err)

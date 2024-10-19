@@ -25,8 +25,22 @@ const authenticate = async (req, res, next) => {
 		if (isTokenExpired(userSession, 4 * 60 * 60 * 1000)) {
 			return false
 		}
+		const clientAgent = req.headers["user-agent"] || "Unknown Client Agent"
+		const ipAddress =
+			req.headers["x-forwarded-for"] ||
+			req.connection.remoteAddress ||
+			"Unknown IP Address"
+		const macAddress = "N/A"
+
+		if (
+			userSession.macAddress !== macAddress ||
+			userSession.ipAddress !== ipAddress ||
+			userSession.clientAgent !== clientAgent
+		)
+			return false
+
 		req.user = { id: userSession.user }
-		console.log("lkjasdf", req.user)
+
 		return true
 	} catch (error) {
 		next(error)
@@ -52,18 +66,30 @@ module.exports.checkAuthentication = (message, statusCode, failureData) => {
 	}
 }
 
-module.exports.getSessionKey = async user => {
+
+module.exports.getSessionKey = async (user, req, res) => {
 	try {
+		const clientAgent = req.headers["user-agent"] || "Unknown Client Agent"
+		const ipAddress =
+			req.headers["x-forwarded-for"] ||
+			req.connection.remoteAddress ||
+			"Unknown IP Address"
+		const macAddress = "N/A"
+
 		const token = await UserSession.create({
 			user: user._id,
 			createdAt: Date.now(),
 			lastUsedAt: Date.now(),
 			sessionKey: crypto.randomBytes(512).toString("base64"),
+			clientAgent,
+			macAddress,
+			ipAddress,
 		})
-		console.log(token)
+
 		return token.sessionKey
 	} catch (error) {
 		console.error(error)
+		res.status(500).send("Internal Server Error") // Send a response in case of error
 	}
 }
 
@@ -98,10 +124,9 @@ module.exports.verifySession = async (jwt, userId) => {
 	}
 }
 
-const login = async (res, userID) => {
+const login = async (req, res, userID) => {
 	try {
-		const newSessionKey = await this.getSessionKey({ _id: userID })
-		console.log(newSessionKey)
+		const newSessionKey = await this.getSessionKey({ _id: userID }, req, res)
 		res.cookie("sessionKey", newSessionKey, {
 			httpOnly: true,
 			path: "/",

@@ -16,6 +16,7 @@ class Login extends Component {
 			password: "",
 			lastRequest: 0,
 			lastForgotPassword: 0,
+			totp: "",
 		}
 	}
 
@@ -32,11 +33,19 @@ class Login extends Component {
 			lastRequest: 0,
 		})
 	}
+
+	handleTOTPChange = e => {
+		this.setState({
+			totp: e.target.value,
+			lastRequest: 0,
+		})
+	}
+
 	handleForgotPassword = e => {
 		e.preventDefault()
 
 		toast.error(`Please contact the admin!`)
-		return;
+		return
 
 		if (this.state.lastForgotPassword + 2000 > Date.now()) return
 
@@ -74,17 +83,16 @@ class Login extends Component {
 		e.preventDefault()
 		if (this.state.lastRequest + 2000 > Date.now()) return
 
-		const { email, password } = this.state
-		if (!email || !password) {
-			let missing = email ? "password" : "email"
-			toast.error(`Please enter your ${missing}`)
+		const { email, password, totp } = this.state
+		if (!email || !password || !totp) {
+			toast.error(`Please provide all of email, password and totp`)
 			return
 		}
 
 		this.setState({
 			lastRequest: Date.now(),
 		})
-		this.props.dispatch(login(email, password))
+		this.props.dispatch(login(email, password, totp))
 	}
 
 	render() {
@@ -107,14 +115,26 @@ class Login extends Component {
 							pattern="^[^ ]+@[^ ]+\.[a-z]{2,6}$"
 						/>
 					</div>
+
 					<div className="field">
 						<input
 							type="password"
 							placeholder="Password"
 							required
-							// ref={this.emailInputRef}
 							onChange={this.handlePasswordChange}
 						/>
+					</div>
+
+					<div className="field">
+						<input
+							type="text"
+							placeholder="Authenticator TOTP"
+							required
+							onChange={this.handleTOTPChange}
+						/>
+					</div>
+
+					<div className="field">
 						<a onClick={this.handleForgotPassword} href="/login">
 							Forgot Password
 						</a>

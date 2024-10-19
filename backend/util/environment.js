@@ -31,6 +31,7 @@ function getEnvironement(environment) {
 				},
 			},
 			smtpFromUser: process.env.HOOMANNS_EMAIL_USERNAME,
+			hashKeyPassword: process.env.PASSWORD_HASH_KEY,
 
 			aws_access_key_id: process.env.HOOMANNS_AWS_ACCESS_KEY_ID,
 			aws_secret_access_key: process.env.HOOMANNS_AWS_SECRET_ACCESS_KEY,
@@ -65,6 +66,8 @@ function getEnvironement(environment) {
 				},
 			},
 			smtpFromUser: process.env.HOOMANNS_EMAIL_USERNAME,
+
+			hashKeyPassword: process.env.PASSWORD_HASH_KEY,
 
 			access_token_secret: "secret1whiteone",
 			refresh_token_secret: "secret2blackone",

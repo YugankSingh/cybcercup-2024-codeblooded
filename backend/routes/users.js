@@ -20,15 +20,6 @@ router.post(
 	validator,
 	usersApi.createSession
 )
-router.post(
-	"/google-login",
-	body("token")
-		.not()
-		.isEmpty()
-		.withMessage("Oops, the google token is missing"),
-	validator,
-	usersApi.googleLogin
-)
 
 // log-out
 router.post("/logout", checkAuthentication(), usersApi.destroySession)
@@ -77,11 +68,13 @@ const createUserChecks = [
 		.withMessage("OTP must be six characters"),
 ]
 router.post("/", ...createUserChecks, validator, usersApi.create)
+
+
 router.get(
-	"/get-signup-otp/:email",
+	"/get-signup-mfa-otp-and-mfa/:email",
 	param("email").isEmail().withMessage("Please enter a valid email"),
 	validator,
-	usersApi.getOTP
+	usersApi.getOTPAndMFA
 )
 
 // update the current user

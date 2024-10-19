@@ -4,41 +4,6 @@ const authenticate = require("../util/session").checkAuthentication
 const validator = require("../util/validator-mw")
 const { body, query } = require("express-validator")
 
-router.get("/setup", async (req, res) => {
-	console.log("hello")
-	return
-
-	const { username } = req.body
-
-	try {
-		// Find or create user in the database
-		let user = await User.findOne({ username })
-		if (!user) {
-			user = new User({ username })
-			await user.save()
-		}
-
-		// Generate a secret for the user
-		const secret = speakeasy.generateSecret({
-			name: `YourAppName (${username})`,
-		})
-
-		// Update the user's MFA secret in the database
-		user.mfaSecret = secret.base32
-		await user.save()
-
-		// Generate a QR code for the secret
-		qrcode.toDataURL(secret.otpauth_url, (err, dataURL) => {
-			if (err) {
-				return res.status(500).json({ error: "Failed to generate QR code" })
-			}
-			res.json({ qrCode: dataURL, secret: secret.base32 })
-		})
-	} catch (err) {
-		console.error(err)
-		res.status(500).json({ error: "Server error" })
-	}
-})
 
 // Route to verify the user's OTP
 router.post("/verify", async (req, res) => {

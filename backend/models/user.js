@@ -9,13 +9,13 @@ const userSchema = new mongoose.Schema(
 			required: true,
 			unique: true,
 		},
-		password: {
+		passwordHash: {
 			type: String,
 			required: true,
 		},
-		mfaSecret: {
+		passwordSalt: {
 			type: String,
-			required: false, // Initially, it may be null if MFA is not set up
+			required: true,
 		},
 		name: {
 			type: String,

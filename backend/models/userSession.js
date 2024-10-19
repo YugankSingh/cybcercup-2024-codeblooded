@@ -12,6 +12,18 @@ const userSessionSchema = new Schema(
 			ref: "User",
 			required: true,
 		},
+		clientAgent: {
+			type: String,
+			required: true,
+		},
+		macAddress: {
+			type: String,
+			required: true,
+		},
+		ipAddress: {
+			type: String,
+			required: true,
+		},
 	},
 	{ timestamps: true }
 )

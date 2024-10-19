@@ -8,9 +8,10 @@ const APIUrls = {
 
 	resetPasswordMail: email => `${API_ROOT}/reset-password/send-email/${email}`,
 	resetPassword: () => `${API_ROOT}/reset-password/reset`,
-	
+
 	// GET request
-	getOTP: (signupEmail) => `${API_ROOT}/users/get-signup-otp/${signupEmail}`,
+	getOTP: signupEmail =>
+		`${API_ROOT}/users/get-signup-mfa-otp-and-mfa/${signupEmail}`,
 	// POST to create a new user
 	user: () => `${API_ROOT}/users/`,
 	// PATCH to update the data
